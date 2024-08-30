@@ -39,7 +39,7 @@ class LoginController extends Controller
         $this->middleware('auth')->only('logout');
     }
 
-    protected function authenticated(Request $request, $user)
+    protected function authenticated(\Illuminate\Http\Request $request, $user)
     {
         if ($user->hasRole('admin')) {
             return redirect('/admin/dashboard');

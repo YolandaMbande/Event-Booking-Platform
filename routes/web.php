@@ -1,11 +1,13 @@
 <?php
+
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OrganizersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-// Public Routes
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -21,7 +23,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 // Organizer Routes
 Route::middleware(['auth', 'role:organizer'])->group(function () {
-    Route::get('/organizers/dashboard', [OrganizersController::class, 'dashboard'])->name('organizers.dashboard');
+    Route::get('/organisers/dashboard', [OrganizersController::class, 'dashboard'])->name('organisers.dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+
 
     // Event Routes
     Route::get('/organisers/create-event', [OrganizersController::class, 'create'])->name('organisers.create_event');
