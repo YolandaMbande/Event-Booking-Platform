@@ -8,10 +8,10 @@
             font-family: 'Figtree', sans-serif;
             margin: 0;
             padding: 0;
-            display: flex; /* Enables Flexbox layout */
-            justify-content: center; /* Centers horizontally */
-            align-items: center; /* Centers vertically */
-            min-height: 100vh; /* Ensures the body takes full viewport height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
         .container {
@@ -103,8 +103,8 @@
 
                         @error('email')
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                        <strong>{{ $message }}</strong>
+                    </span>
                         @enderror
                     </div>
 
@@ -114,8 +114,24 @@
 
                         @error('password')
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                        <strong>{{ $message }}</strong>
+                    </span>
+                        @enderror
+                    </div>
+
+                    <!-- New Role Dropdown -->
+                    <div class="mb-3">
+                        <label for="role">{{ __('Role') }}</label>
+                        <select id="role" class="form-control @error('role') is-invalid @enderror" name="role" required>
+                            <option value="admin">Admin</option>
+                            <option value="attendee">Attendee</option>
+                            <option value="organiser">Organiser</option>
+                        </select>
+
+                        @error('role')
+                        <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
                         @enderror
                     </div>
 
